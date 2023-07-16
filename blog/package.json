@@ -4,9 +4,11 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "beautiful": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ --output src/public/css/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "keywords": [
     "f8",
@@ -15,6 +17,15 @@
   ],
   "author": "khoa",
   "license": "ISC",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+
+  "husky":{
+    "hooks":{
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
     "express": "^4.18.2",
     "express-handlebars": "^5.3.5"
